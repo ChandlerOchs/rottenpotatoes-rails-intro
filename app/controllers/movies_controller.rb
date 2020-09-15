@@ -27,6 +27,7 @@ class MoviesController < ApplicationController
     @all_ratings.each do |key| 
       @selected_ratings[key] = '1' 
     end
+    puts "These are selected ratings after dumb dumb", @selected_ratings
     
     if (params[:ratings])
       @selected_ratings = params[:ratings].keys
