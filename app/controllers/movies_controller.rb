@@ -24,6 +24,9 @@ class MoviesController < ApplicationController
       @movies = Movie.where(:rating => params[:ratings].keys)
     else
       @selected_ratings = @all_ratings
+      @selected_ratings.each do |rating|
+        params[rating] = true
+      end
       if (sort.eql?("titles"))
         @movies = Movie.order(:title)
       elsif (sort.eql?("dates"))
