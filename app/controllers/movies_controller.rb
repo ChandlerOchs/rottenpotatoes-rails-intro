@@ -30,7 +30,7 @@ class MoviesController < ApplicationController
     puts "These are selected ratings after dumb dumb", @selected_ratings
     
     if (params[:ratings])
-      @selected_ratings = params[:ratings].keys
+      @selected_ratings = params[:ratings]
       session[:ratings] = @selected_ratings
     elsif (session[:ratings])
       need_to_redirect = true
