@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
           @selected_ratings[key] = '1' 
         end
     end
-    puts "These are selected ratings", selected_ratings
+    puts "These are selected ratings", @selected_ratings
     # @selected_ratings = @selected_ratings.keys
     #remember the ratings we had through variable to be used in view
     @selected_ratings.keys.each do |rating|
