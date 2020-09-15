@@ -23,17 +23,19 @@ class MoviesController < ApplicationController
       need_to_redirect = true
     end
     
-    @selected_ratings = @all_ratings
+    @selected_ratings = nil
     puts "pre", @selected_ratings
     @all_ratings.each do |rating| 
-      @selected_ratings[key] = '1' 
+      @selected_ratings[rating] = '1' 
     end
     puts "These are selected ratings after dumb dumb", @selected_ratings
     
     if (params[:ratings])
+      puts "We came into params"
       @selected_ratings = params[:ratings]
       session[:ratings] = @selected_ratings
     elsif (session[:ratings])
+      puts "We came into session"
       need_to_redirect = true
       @selected_ratings = session[:ratings]
     end
