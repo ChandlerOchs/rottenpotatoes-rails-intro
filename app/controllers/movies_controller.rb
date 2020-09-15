@@ -14,8 +14,9 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     sort = params[:sort]
     puts "Testing"
-    rating_selection = params[:ratings]
-    puts rating_selection
+    if (params[:ratings])
+      puts "WE HAD RATINGS"
+    end
     if (sort.eql?("titles"))
       @movies = Movie.order(:title)
     elsif (sort.eql?("dates"))
