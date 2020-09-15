@@ -25,9 +25,9 @@ class MoviesController < ApplicationController
     
     @selected_ratings = @all_ratings
     puts "pre", @selected_ratings
-    # @all_ratings.each do |rating| 
-    #   @selected_ratings[key] = '1' 
-    # end
+    @all_ratings.each do |rating| 
+      @selected_ratings[key] = '1' 
+    end
     puts "These are selected ratings after dumb dumb", @selected_ratings
     
     if (params[:ratings])
