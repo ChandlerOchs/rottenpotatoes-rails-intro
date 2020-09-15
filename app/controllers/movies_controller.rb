@@ -26,25 +26,13 @@ class MoviesController < ApplicationController
       params[rating] = true
     end
     @movies = Movie.where(:rating => @selected_ratings.keys).order(@sort)
-    # else
-    #   puts "you came here"
-    #   @selected_ratings = @all_ratings
-    #   @selected_ratings.each do |rating|
-    #     params[rating] = true
-    #   end
-    #   if (@sort.eql?("titles"))
-    #     @movies = Movie.order(:title)
-    #   elsif (@sort.eql?("dates"))
-    #     @movies = Movie.order(:release_date)
-    #   else
-    #     @movies = Movie.all
-    #   end
-    # end
+
     session[:sort] = @sort
-    session[:ratings] = @ratings
-    if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
+    session[:ratings] = @selected_ratings
+    #RESTful behavior
+    if params[:sort] != session[:sort] || params[:ratings] != session[:ratings]
       flash.keep
-      redirect_to movies_path sort: @sort, ratings: @ratings
+      redirect_to movies_path(@sort, @ratings)
   end
 
   def new
