@@ -17,13 +17,15 @@ class MoviesController < ApplicationController
     if (params[:ratings])
       puts "WE HAD RATINGS"
       puts params[:ratings].keys
-    end
-    if (sort.eql?("titles"))
-      @movies = Movie.order(:title)
-    elsif (sort.eql?("dates"))
-      @movies = Movie.order(:release_date)
+      @movies = Movie.where(params[:ratings].keys)
     else
-      @movies = Movie.all
+      if (sort.eql?("titles"))
+        @movies = Movie.order(:title)
+      elsif (sort.eql?("dates"))
+        @movies = Movie.order(:release_date)
+      else
+        @movies = Movie.all
+      end
     end
   end
 
