@@ -12,6 +12,7 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
+    puts [:ratings].keys
     sort = params[:sort]
     if (sort.eql?("titles"))
       @movies = Movie.order(:title)
