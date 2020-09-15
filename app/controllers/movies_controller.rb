@@ -12,31 +12,33 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
-    sort = params[:sort]
-    @selected_ratings = params[:ratings]
-    if (@selected_ratings)
-      @selected_ratings = @selected_ratings.keys
-      #remember the ratings we had through variable to be used in view
-      @selected_ratings.each do |rating|
-        params[rating] = true
-      end
-      puts "WE HAD RATINGS"
-      puts params[:ratings].keys
-      @movies = Movie.where(:rating => params[:ratings].keys)
-    else
-      puts "you came here"
-      @selected_ratings = @all_ratings
-      @selected_ratings.each do |rating|
-        params[rating] = true
-      end
-      if (sort.eql?("titles"))
-        @movies = Movie.order(:title)
-      elsif (sort.eql?("dates"))
-        @movies = Movie.order(:release_date)
-      else
-        @movies = Movie.all
-      end
+    @sort = params[:sort] || session[:sort]
+    @selected_ratings = params[:ratings] || session[:ratings] || @all_ratings
+    # if (@selected_ratings)
+    @selected_ratings = @selected_ratings.keys
+    #remember the ratings we had through variable to be used in view
+    @selected_ratings.each do |rating|
+      params[rating] = true
     end
+    puts "WE HAD RATINGS"
+    puts params[:ratings].keys
+    @movies = Movie.where(:rating => params[:ratings].keys).order(@sort)
+    # else
+    #   puts "you came here"
+    #   @selected_ratings = @all_ratings
+    #   @selected_ratings.each do |rating|
+    #     params[rating] = true
+    #   end
+    #   if (@sort.eql?("titles"))
+    #     @movies = Movie.order(:title)
+    #   elsif (@sort.eql?("dates"))
+    #     @movies = Movie.order(:release_date)
+    #   else
+    #     @movies = Movie.all
+    #   end
+    # end
+    session[:sort] = @sort
+    session[:ratings] = @ratings
   end
 
   def new
