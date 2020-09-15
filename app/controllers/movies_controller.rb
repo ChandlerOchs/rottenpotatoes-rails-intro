@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
       need_to_redirect = true
     end
     
-    @selected_ratings = nil
+    @selected_ratings = {}
     puts "pre", @selected_ratings
     @all_ratings.each do |rating| 
       @selected_ratings[rating] = '1' 
