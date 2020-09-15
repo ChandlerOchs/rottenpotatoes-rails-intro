@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     puts "Testing"
     if (params[:ratings])
       puts "WE HAD RATINGS"
-      puts params[:ratings]
+      puts params[:ratings].keys
     end
     if (sort.eql?("titles"))
       @movies = Movie.order(:title)
