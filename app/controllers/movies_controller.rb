@@ -41,12 +41,15 @@ class MoviesController < ApplicationController
     @selected_ratings.keys.each do |rating|
       params[rating] = true
     end
-    @movies = Movie.where(:rating => @selected_ratings.keys).order(@sort)
+    
 
     #RESTful behavior
     if (need_to_redirect)
+      puts "HELLLLLLLLLLO"
       flash.keep
       redirect_to movies_path(:sort => @sort, :ratings => @ratings)
+    else
+      @movies = Movie.where(:rating => @selected_ratings.keys).order(@sort)
     end
   end
 
