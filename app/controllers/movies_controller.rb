@@ -48,7 +48,7 @@ class MoviesController < ApplicationController
     if (need_to_redirect)
       puts "HELLLLLLLLLLO"
       flash.keep
-      redirect_to movies_path(:sort => @sort, :ratings => @ratings)
+      redirect_to movies_path(:sort => @sort, :ratings => @selected_ratings)
     else
       @movies = Movie.where(:rating => @selected_ratings).order(@sort)
     end
