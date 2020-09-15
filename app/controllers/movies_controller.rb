@@ -31,7 +31,7 @@ class MoviesController < ApplicationController
     session[:ratings] = @selected_ratings
     #RESTful behavior
     if params[:sort] != session[:sort] || params[:ratings] != session[:ratings]
-      flash.keep
+      # flash.keep
       redirect_to movies_path(@sort, @ratings)
   end
 
