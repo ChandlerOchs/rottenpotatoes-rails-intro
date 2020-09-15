@@ -50,7 +50,7 @@ class MoviesController < ApplicationController
       flash.keep
       redirect_to movies_path(:sort => @sort, :ratings => @selected_ratings)
     else
-      @movies = Movie.where(:rating => @selected_ratings).order(@sort)
+      @movies = Movie.where(:rating => @selected_ratings.keys).order(@sort)
     end
   end
 
