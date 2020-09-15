@@ -23,10 +23,10 @@ class MoviesController < ApplicationController
       need_to_redirect = true
     end
     
-    @selected_ratings = {}
-    @all_ratings.each do |key| 
-      @selected_ratings[key] = '1' 
-    end
+    @selected_ratings = @all_ratings
+    # @all_ratings.each do |rating| 
+    #   @selected_ratings[key] = '1' 
+    # end
     puts "These are selected ratings after dumb dumb", @selected_ratings
     
     if (params[:ratings])
@@ -39,7 +39,7 @@ class MoviesController < ApplicationController
     puts "These are selected ratings", @selected_ratings
     # @selected_ratings = @selected_ratings.keys
     #remember the ratings we had through variable to be used in view
-    @selected_ratings.keys.each do |rating|
+    @selected_ratings.each do |rating|
       params[rating] = true
     end
     
