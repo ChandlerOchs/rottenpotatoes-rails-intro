@@ -24,6 +24,7 @@ class MoviesController < ApplicationController
     end
     
     @selected_ratings = @all_ratings
+    puts "pre", @selected_ratings
     # @all_ratings.each do |rating| 
     #   @selected_ratings[key] = '1' 
     # end
