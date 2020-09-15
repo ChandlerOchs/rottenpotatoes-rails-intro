@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     sort = params[:sort]
     if (sort.eql?("titles"))
-      @movies = [Movie.order(:title), "foo"]
+      @movies = Movie.order(:title)
     elsif (sort.eql?("dates"))
       @movies = Movie.order(:release_date)
     else
