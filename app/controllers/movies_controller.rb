@@ -38,7 +38,8 @@ class MoviesController < ApplicationController
     end
     puts "These are selected ratings", @selected_ratings
     # @selected_ratings = @selected_ratings.keys
-    #remember the ratings we had through variable to be used in view
+    
+    #remember the ratings we had through variable to be used in view checkbox
     @selected_ratings.keys.each do |rating|
       params[rating] = true
     end
