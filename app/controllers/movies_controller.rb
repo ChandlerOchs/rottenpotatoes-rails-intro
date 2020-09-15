@@ -13,12 +13,17 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     sort = params[:sort]
-    puts "Testing"
-    if (params[:ratings])
+    @selected_ratings = params[:ratings]
+    if (selected_ratings)
+      #remember the ratings we had through variable to be used in view
+      @selected_ratings.each do |rating|
+        params[rating] = true
+      end
       puts "WE HAD RATINGS"
       puts params[:ratings].keys
       @movies = Movie.where(:rating => params[:ratings].keys)
     else
+      @selected_ratings = @all_ratings
       if (sort.eql?("titles"))
         @movies = Movie.order(:title)
       elsif (sort.eql?("dates"))
