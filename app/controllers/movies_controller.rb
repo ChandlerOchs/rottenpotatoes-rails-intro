@@ -16,10 +16,11 @@ class MoviesController < ApplicationController
     @selected_ratings = params[:ratings] || session[:ratings]
     if (!@selected_ratings)
         @selected_ratings = {}
-        @all_ratings.each do |val| 
-          @selected_ratings[val] = '1' 
+        @all_ratings.keys each do |key| 
+          @selected_ratings[key] = '1' 
         end
     end
+    puts "These are selected ratings", selected_ratings
     # @selected_ratings = @selected_ratings.keys
     #remember the ratings we had through variable to be used in view
     @selected_ratings.keys.each do |rating|
