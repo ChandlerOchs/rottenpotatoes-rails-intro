@@ -13,8 +13,13 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     @sort = params[:sort] || session[:sort]
-    @selected_ratings = params[:ratings] || session[:ratings] || @all_ratings
-    # if (@selected_ratings)
+    @selected_ratings = params[:ratings] || session[:ratings]
+    if (!@selected_ratings)
+        @selected_ratings = {}
+        @all_ratings.each do |val| 
+          @selected_ratings[val] = '1' 
+        end
+    end
     # @selected_ratings = @selected_ratings.keys
     #remember the ratings we had through variable to be used in view
     @selected_ratings.each do |rating|
