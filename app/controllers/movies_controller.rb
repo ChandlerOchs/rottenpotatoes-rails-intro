@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
     end
     
     @selected_ratings = {}
-    @all_ratings.keys each do |key| 
+    @all_ratings each do |key| 
       @selected_ratings[key] = '1' 
     end
     
