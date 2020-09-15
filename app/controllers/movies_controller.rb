@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
     if (sort.eql?("titles"))
       @movies = Movie.order(:title)
     elsif (sort.eql?("dates"))
-      @movies = Movie.order(:date)
+      @movies = Movie.order(:release_date)
     else
       @movies = Movie.all
     end
