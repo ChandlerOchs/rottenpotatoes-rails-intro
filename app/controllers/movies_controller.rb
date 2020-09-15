@@ -24,6 +24,7 @@ class MoviesController < ApplicationController
       puts params[:ratings].keys
       @movies = Movie.where(:rating => params[:ratings].keys)
     else
+      puts "you came here"
       @selected_ratings = @all_ratings
       @selected_ratings.each do |rating|
         params[rating] = true
