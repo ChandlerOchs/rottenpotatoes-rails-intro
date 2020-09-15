@@ -25,9 +25,7 @@ class MoviesController < ApplicationController
     @selected_ratings.each do |rating|
       params[rating] = true
     end
-    puts "WE HAD RATINGS"
-    puts params[:ratings].keys
-    @movies = Movie.where(:rating => params[:ratings].keys).order(@sort)
+    @movies = Movie.where(:rating => @selected_ratings.keys).order(@sort)
     # else
     #   puts "you came here"
     #   @selected_ratings = @all_ratings
