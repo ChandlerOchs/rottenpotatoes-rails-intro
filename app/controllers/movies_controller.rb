@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
     end
     # @selected_ratings = @selected_ratings.keys
     #remember the ratings we had through variable to be used in view
-    @selected_ratings.each do |rating|
+    @selected_ratings.keys.each do |rating|
       params[rating] = true
     end
     @movies = Movie.where(:rating => @selected_ratings.keys).order(@sort)
