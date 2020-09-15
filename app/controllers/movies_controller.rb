@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
     sort = params[:sort]
     @selected_ratings = params[:ratings]
     if (@selected_ratings)
+      @selected_ratings = @selected_ratings.keys
       #remember the ratings we had through variable to be used in view
       @selected_ratings.each do |rating|
         params[rating] = true
