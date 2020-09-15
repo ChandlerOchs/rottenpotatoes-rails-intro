@@ -12,13 +12,28 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
-    @sort = params[:sort] || session[:sort]
-    @selected_ratings = params[:ratings] || session[:ratings]
-    if (!@selected_ratings)
-        @selected_ratings = {}
-        @all_ratings.keys each do |key| 
-          @selected_ratings[key] = '1' 
-        end
+    need_to_redirect = false
+    #sort logic
+    @sort = nil
+    if (params[:sort])
+      @sort = param[:sort]
+      session[:sort] = @sort
+    elsif (session[:sort])
+      @sort = session[:sort]
+      need_to_redirect = true
+    end
+    
+    @selected_ratings = {}
+    @all_ratings.keys each do |key| 
+      @selected_ratings[key] = '1' 
+    end
+    
+    if (params[:ratings])
+      @selected_ratings = params[:ratings].keys
+      session[:ratings] = @selected_ratings
+    elsif (session[:ratings])
+      need_to_redirect = true
+      @selected_ratings = session[:ratings]
     end
     puts "These are selected ratings", @selected_ratings
     # @selected_ratings = @selected_ratings.keys
@@ -28,10 +43,8 @@ class MoviesController < ApplicationController
     end
     @movies = Movie.where(:rating => @selected_ratings.keys).order(@sort)
 
-    session[:sort] = @sort
-    session[:ratings] = @selected_ratings
     #RESTful behavior
-    if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
+    if (need_to_redirect)
       flash.keep
       redirect_to movies_path(:sort => @sort, :ratings => @ratings)
     end
